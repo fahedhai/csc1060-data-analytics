@@ -1,48 +1,81 @@
-# Assessment 2: Predicting Student Final Grades
+# 📊 Predicting Student Final Grades
 
-**Course:** CSC1060 - Data Analytics Fundamentals (Problem Solving 2)
+**Course:** CSC1060 — Data Analytics Fundamentals (Problem Solving 2)  
+**Author:** Fahed Haidar — IT/Data Science Student
 
-## Overview
-Builds and compares three regression models to predict students' final
-grades from demographic data, attendance, study habits, and prior academic
-performance (first/second period grades).
+## Project Overview
+
+A predictive data analysis project investigating which factors are associated with students' final academic grades.
+
+The project uses student performance data to prepare and analyse demographic, attendance, study habit and prior academic performance variables. Three regression models were developed and compared to evaluate their ability to predict final grades.
+
+The project demonstrates a complete data analytics and machine learning workflow, including:
+
+- Data cleaning and preparation
+- Exploratory data analysis
+- Feature encoding and selection
+- Feature scaling
+- Regression modelling
+- Model comparison
+- Performance evaluation
+- Interpretation of results
+
 
 ## Dataset
-Student performance dataset — 649 records, 10 variables (school, sex, age,
-home address type, weekly study time, past class failures, school absences,
-period 1/2 grades, final grade). 8 duplicate rows removed, leaving 641
-unique records. No missing values.
+
+The project uses a student performance dataset containing **649 records and 10 variables** covering:
+
+- School
+- Sex
+- Age
+- Home address type
+- Weekly study time
+- Past class failures
+- School absences
+- First period grade
+- Second period grade
+- Final grade
+
+During data preparation, **8 duplicate rows were removed**, leaving **641 unique records**. No missing values were identified.
 
 ## Approach
-- One-hot encoded categorical variables (School, Student Sex, Home Address
-  Type)
-- 80/20 train/test split, features scaled with StandardScaler
-- Compared three models: Linear Regression, Decision Tree, Random Forest
+
+The analysis followed a structured machine learning workflow:
+
+1. **Data preparation** — checked the dataset for duplicates and missing values.
+2. **Feature preparation** — categorical variables were converted using one-hot encoding.
+3. **Train/test split** — data was divided into 80% training and 20% testing sets.
+4. **Feature scaling** — numerical features were scaled using `StandardScaler`.
+5. **Model development** — three regression models were trained:
+   - Linear Regression
+   - Decision Tree
+   - Random Forest
+6. **Model evaluation** — models were compared using Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and R² Score.
 
 ## Results
 
+Three regression models were trained and evaluated using MAE, RMSE, and R² Score.
+
 | Model | MAE | RMSE | R² Score |
-|---|---|---|---|
+|---|---:|---:|---:|
 | **Linear Regression** | **0.76** | **1.01** | **0.88** |
 | Random Forest | 0.82 | 1.21 | 0.82 |
 | Decision Tree | 0.94 | 1.56 | 0.71 |
 
-Linear Regression performed best — likely because final grade has a very
-strong, near-linear relationship with prior grades (first/second period),
-so a simple linear model captures most of the signal without the added
-variance that tree-based models can introduce on a relatively small
-dataset (641 rows).
+### Best Performing Model
+
+**Linear Regression achieved the strongest overall performance**, with an R² score of **0.88**, an MAE of **0.76**, and an RMSE of **1.01**.
+
+The strong performance is likely related to the near-linear relationship between final grades and prior academic performance, particularly first and second period grades. On this dataset of 641 records, the linear model captured most of the predictive signal without the additional variance introduced by the tree-based models.
 
 ## Key Findings
-- **Second Period Grade and First Period Grade are by far the strongest
-  predictors** of final grade — prior academic performance dominates over
-  demographic or behavioral factors.
-- **Past class failures showed a moderate negative correlation** with final
-  grade — students with a history of failures tend to score lower.
-- Weekly study time had only a weak positive relationship with final grade,
-  and age/absences showed weak correlations — somewhat counterintuitive,
-  suggesting other unmeasured factors (motivation, support at home, etc.)
-  may matter more than these simpler behavioral proxies.
+
+- **Prior academic performance was the strongest predictor of final grade.** First and second period grades had substantially stronger relationships with final grades than the demographic and behavioural variables examined.
+- **Past class failures were negatively associated with final grades.** Students with a history of previous failures tended to achieve lower final grades.
+- **Weekly study time showed only a weak positive relationship** with final grade.
+- **Age and school absences showed relatively weak relationships** with final grade, suggesting that the variables included in this dataset do not fully explain differences in academic performance.
+- The results demonstrate that **feature selection and model comparison are important** when developing predictive models, as the three regression approaches produced noticeably different performance.
+
 
 ## How to Run
 ```bash
@@ -54,3 +87,12 @@ Requires `student_performance.csv` in the same folder.
 ## Files
 - `student_performance_analysis.py` — full analysis script
 - `report.pdf` — full written report with methodology, findings, and evaluation
+
+## Project Structure
+
+```text
+assessment-2-student-performance/
+├── student_performance_analysis.py   # Data analysis and machine learning workflow
+├── student_performance.csv           # Student performance dataset
+├── report.pdf                         # Full analysis report
+└── README.md                          # Project documentation
